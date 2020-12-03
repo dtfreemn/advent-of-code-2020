@@ -326,22 +326,23 @@ let matrix = [
 
 function countTrees([rightMoves, downMoves]) {
   const TREE = '#';
+  const matrixLength = matrix.length;
+  const singleDimensionLength = matrix[0].length;
+
   let treeCount = 0;
-  let matrixLength = matrix.length;
-  let singleDimensionLength = matrix[0].length;
   let currPos = [0, 0];
   
   while (currPos[0] < matrixLength - downMoves) {
-    let rm = 0;
+    let madeRightMoves = 0;
     
-    while (rm < rightMoves) {
+    while (madeRightMoves < rightMoves) {
       if (currPos[1] + 1 < singleDimensionLength) {
         currPos[1] += 1 
       } else {
         currPos[1] = 0;
       }
   
-      rm += 1;
+      madeRightMoves += 1;
     }
   
     currPos[0] += downMoves;
@@ -352,7 +353,7 @@ function countTrees([rightMoves, downMoves]) {
   }
 
   return treeCount;
-}
+};
 
 // Part1:
 console.log(countTrees([3, 1]));
